@@ -1355,7 +1355,7 @@ BEGIN
         RETURN
     END
     
-    -- Validate vacation leave exists (Lab 7-1a pattern)
+   
     IF NOT EXISTS (
         SELECT 1 
         FROM VacationLeave 
@@ -1366,7 +1366,7 @@ BEGIN
         RETURN
     END
     
-    -- Check if employee already has active shift assignments (Lab 7-1a)
+  
     IF EXISTS (
         SELECT 1 
         FROM ShiftAssignment 
@@ -1374,7 +1374,6 @@ BEGIN
           AND status = 'Active'
     )
     BEGIN
-        -- Link vacation to employee's shift by creating leave request
         INSERT INTO LeaveRequest (employee_id, leave_id, justification, duration, status)
         VALUES (
             @EmployeeID,
@@ -1459,7 +1458,7 @@ BEGIN
     SELECT 'Leave entitlements updated for employee' AS Message;
 
 END;
-
+--mohannd hany 
 GO
 CREATE PROCEDURE ConfigureLeaveEligibility @LeaveType VARCHAR(50),
                                            @MinTenure INT,
@@ -1995,7 +1994,7 @@ BEGIN
     ORDER BY period_start DESC;
 
 END;
-
+--mohannd hany 
 GO
 CREATE PROCEDURE GetBonusEligibleEmployees @Eligibility_criteria VARCHAR(200) AS
 BEGIN
@@ -3570,5 +3569,6 @@ END;
 
 
 GO
+
 
 

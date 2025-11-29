@@ -293,7 +293,7 @@ CREATE TABLE Mission
     FOREIGN KEY (manager_id) REFERENCES Employee (employee_id)
 );
 
-CREATE TABLE Leave
+CREATE TABLE  Leave
 (
     leave_id          INT PRIMARY KEY IDENTITY (1, 1),
     leave_type        VARCHAR(50) NOT NULL,
@@ -343,6 +343,8 @@ CREATE TABLE LeavePolicy
     special_leave_type VARCHAR(50),
     reset_on_new_year  BIT DEFAULT 0,
     leave_type_id      INT,
+max_duration INT,
+    workflow_type VARCHAR(50),   
     FOREIGN KEY (leave_type_id) REFERENCES Leave (leave_id)
 );
 

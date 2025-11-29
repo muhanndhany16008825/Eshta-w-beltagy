@@ -1559,14 +1559,24 @@ BEGIN
 END;
 
 GO
-CREATE PROCEDURE ConfigureLeaveRules @LeaveType VARCHAR(50),
-                                     @MaxDuration INT,
-                                     @NoticePeriod INT,
-                                     @WorkflowType VARCHAR(50) AS
+CREATE PROCEDURE ConfigureLeaveRules 
+    @LeaveType VARCHAR(50),
+    @MaxDuration INT,
+    @NoticePeriod INT,
+    @WorkflowType VARCHAR(50)
+AS
 BEGIN
-    SELECT 'Leave rules configured for ' + @LeaveType AS Message;
-
-END;
+    BEGIN TRY
+        DECLARE @LeaveID INT;
+        SELECT @LeaveID = leave_id 
+        FROM Leave 
+        WHERE leave_type = @LeaveType;
+        
+        IF @LeaveID IS NULL
+        BEGIN
+            SELECT 'Leave type not found' AS Message;
+            RETURN;
+        END;
 
 GO
 CREATE PROCEDURE ConfigureSpecialLeave @LeaveType VARCHAR(50),
@@ -3570,5 +3580,6 @@ END;
 
 
 GO
+
 
 
